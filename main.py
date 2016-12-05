@@ -13,8 +13,8 @@ def main(mri_name, dmri_name):
     head_mri.insert_lead(lead)
     head_mri.build_mesh(0.22) # resolution for mesh
 
-    head_dmri = HeadDMRI(dmri_name, "conductivities_nodes.msh")
-    head_dmri.calculate_conductivities(True, head_mri.get_mesh())
+    head_dmri = HeadDMRI(dmri_name, "bval", "bvec", "conductivities_nodes.msh")
+    head_dmri.calculate_conductivities("vertices_file", 10)
     ComsolConverter.save_mesh_to_mphtxt(head_mri.get_mesh(), "head.mphtxt")
 
     print "Calculated!"
